@@ -1,0 +1,23 @@
+D&SM Analysis Take Home Exam
+#1
+import pandas as pd
+df = pd.read_csv('ramen-ratings.csv', index_col=0)
+#2
+df.head()
+#3 brand and scores(stars) only
+newdf = df[["Brand","Stars"]]
+newdf.head()
+#4. already done it.(I think)
+#5 Nissin and above 3.5
+df[(df.Brand == 'Nissin') & (df.Stars > str(3.5))]
+#6
+import numpy as np
+pd.to_numeric(df['Stars'], errors='coerce')
+df.groupby('Brand').Stars.agg([min, max, np.mean])
+#7
+df["Stars"].mode()
+#8
+df.groupby('Brand').Stars.mean()
+df.groupby('Variety').Stars.mean()
+#9
+len(set(df['Brand']))
